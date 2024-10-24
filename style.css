@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+/* General settings to simulate a terminal */
+body {
+  background-color: #000000;
+  /* True black for Vim-like background */
+  color: #ebdbb2;
+  /* Light text */
+  font-family: "JetBrains Mono", monospace;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#vim-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  /* Centered and sized within the viewport */
+  padding: 10px;
+  position: relative;
+}
+
+#resume-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  white-space: pre-wrap;
+  /* Keep the new lines */
+  text-align: center;
+}
+
+#inside {
+  margin-bottom: 20px;
+  line-height: 1.5;
+  align-items: center;
+}
+
+#inside a {
+  color: #83a598;
+  /* Soft blue color for links */
+  text-decoration: none;
+  margin: 0 10px;
+  /* Space links equally */
+}
+
+#inside a:hover {
+  text-decoration: underline;
+  /* Underline on hover */
+}
+
+/* Status bar at the bottom, like in Vim */
+#status-bar {
+  background-color: #3c3836;
+  /* Darker bar at the bottom */
+  color: #b8bb26;
+  /* Green-yellow text for the status bar */
+  padding: 5px 10px;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+}
+
+/* Line numbers */
+#line-numbers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: right;
+  padding-right: 10px;
+  color: #5c6370;
+  /* Slightly dimmer color for line numbers */
+  font-size: 16px;
+}
+
+#resume-content:focus {
+  outline: none;
+}
+
+.contact {
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  white-space: nowrap;
+  /* Prevent line breaks */
+  color: #83a598;
+}
+
+h1 {
+  font-family: "JetBrains Mono", monospace;
+}
+
+p {
+  font-family: "JetBrains Mono", monospace;
+}
