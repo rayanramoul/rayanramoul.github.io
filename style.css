@@ -1,107 +1,246 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-
 /* General settings to simulate a terminal */
 body {
   background-color: #000000;
   /* True black for Vim-like background */
-  color: #ebdbb2;
-  /* Light text */
-  font-family: "JetBrains Mono", monospace;
+  color: #ff2777;
+  /* Pink color for text */
+  font-family: monospace;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
+}
+
+/* Custom scrollbar for nvim look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 #vim-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   width: 100vw;
-  /* Centered and sized within the viewport */
-  padding: 10px;
   position: relative;
+  padding-top: 35px;
+  /* Space for title bar */
 }
 
-#resume-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  white-space: pre-wrap;
-  /* Keep the new lines */
+/* Title bar at the top */
+#title-bar {
+  background-color: #1a1a1a;
+  color: #ff2777;
+  padding: 8px 15px;
+  font-size: 13px;
+  position: fixed;
+  top: 0;
+  width: 100%;
   text-align: center;
-}
-
-#inside {
-  margin-bottom: 20px;
-  line-height: 1.5;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #333;
+  z-index: 100;
 }
 
-#inside a {
-  color: #83a598;
-  /* Soft blue color for links */
+#title-bar-buttons {
+  position: absolute;
+  left: 15px;
+  display: flex;
+  gap: 8px;
+}
+
+.title-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.title-button.close {
+  background-color: #ff5f56;
+}
+
+.title-button.minimize {
+  background-color: #ffbd2e;
+}
+
+.title-button.maximize {
+  background-color: #27c93f;
+}
+
+#title-bar-text {
+  font-family: monospace;
+  color: #888;
+}
+
+/* Editor area with line numbers and content */
+#editor-area {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding-bottom: 30px;
+  /* Space for status bar */
+}
+
+#content-area {
+  flex: 1;
+  padding: 20px 20px 20px 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-line {
+  width: 100%;
+  max-width: 800px;
+  line-height: 1.6;
+  min-height: 1.6em;
+  text-align: center;
+  font-size: 18px;
+}
+
+.editor-line.empty {
+  color: #444;
+  text-align: left;
+}
+
+.editor-line.contact-line {
+  margin-top: 10px;
+}
+
+.editor-line a {
+  color: #ff2777;
   text-decoration: none;
-  margin: 0 10px;
-  /* Space links equally */
 }
 
-#inside a:hover {
+.editor-line a:hover {
   text-decoration: underline;
-  /* Underline on hover */
 }
 
 /* Status bar at the bottom, like in Vim */
 #status-bar {
-  background-color: #3c3836;
-  /* Darker bar at the bottom */
-  color: #b8bb26;
-  /* Green-yellow text for the status bar */
+  background-color: #ff2777;
+  /* Pink background for NORMAL mode */
+  color: #000000;
+  /* Black text for NORMAL mode */
   padding: 5px 10px;
-  font-size: 14px;
+  font-size: 13px;
   position: fixed;
   bottom: 0;
   width: 100%;
-  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s;
+  font-family: monospace;
+  box-sizing: border-box;
 }
 
-/* Line numbers */
+#mode-indicator {
+  flex: 0 0 auto;
+}
+
+#file-info {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+#cursor-position {
+  flex: 0 0 auto;
+  font-size: 12px;
+}
+
+#status-bar.insert-mode {
+  background-color: #000000;
+  /* Black background for INSERT mode */
+  color: #ff2777;
+  /* Pink text for INSERT mode */
+}
+
+#status-bar.visual-mode {
+  background-color: #ff9500;
+  /* Orange background for VISUAL mode */
+  color: #000000;
+  /* Black text for VISUAL mode */
+}
+
+/* Line numbers - nvim style */
 #line-numbers {
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-align: right;
-  padding-right: 10px;
-  color: #5c6370;
-  /* Slightly dimmer color for line numbers */
-  font-size: 16px;
-}
-
-#resume-content:focus {
-  outline: none;
-}
-
-.contact {
-  white-space: nowrap;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px 20px 20px;
+  background-color: #000000;
+  border-right: 1px solid #1a1a1a;
+  min-width: 60px;
+}
+
+.line-number {
+  color: #5c6370;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 1.6em;
+  text-align: right;
+  width: 100%;
+  font-family: monospace;
+}
+
+.line-number.current {
+  color: #ff2777;
+  font-weight: bold;
 }
 
 a {
-  white-space: nowrap;
-  /* Prevent line breaks */
-  color: #83a598;
+  color: #ff2777;
 }
 
 h1 {
-  font-family: "JetBrains Mono", monospace;
+  font-family: monospace;
+  color: #ffffff;
+  /* White color for titles */
+  font-size: 24px;
+  margin: 0;
+  display: inline;
 }
 
-p {
-  font-family: "JetBrains Mono", monospace;
+/* Blinking cursor */
+#cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: #ff2777;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
 }

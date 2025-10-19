@@ -5,32 +5,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-    rel="stylesheet">
-  <title>Rayan Samy Ramoul</title>
+  <title>Rayan Ramoul</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div id="vim-container">
-    <div id="status-bar">-- NORMAL --</div>
-    <div id="line-numbers"></div>
-    <pre id="resume-content">
-      <div id="inside">
-        <h1> Rayan Samy Ramoul</h1>
-        <p>==============================<br>
-          Research Engineer @instadeepai, deep learning, software engineering, nvim and arch btw
-          <br>==============================
-        </p>
+    <div id="title-bar">
+      <div id="title-bar-buttons">
+        <span class="title-button close"></span>
+        <span class="title-button minimize"></span>
+        <span class="title-button maximize"></span>
       </div>
-    </pre>
-    <div id="contact">
-      <a href="https://github.com/rayanramoul" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/rayan-samy-ramoul" target="_blank">LinkedIn</a>
-      <a href="https://github.com/rayanramoul/rayanramoul/blob/master/Resume.pdf" target="_blank">Resume</a>
-      <a href="https://twitter.com/raysamram" target="_blank">Twitter</a>
+      <div id="title-bar-text">nvim ~/rayanramoul.txt</div>
+    </div>
+    <div id="editor-area">
+      <div id="line-numbers">
+        <div class="line-number">3</div>
+        <div class="line-number">2</div>
+        <div class="line-number">1</div>
+        <div class="line-number current">1</div>
+        <div class="line-number">1</div>
+        <div class="line-number">2</div>
+        <div class="line-number">3</div>
+        <div class="line-number">4</div>
+        <div class="line-number">5</div>
+        <div class="line-number">6</div>
+        <div class="line-number">7</div>
+      </div>
+      <div id="content-area">
+        <div class="editor-line empty">~</div>
+        <div class="editor-line empty">~</div>
+        <div class="editor-line empty">~</div>
+        <div class="editor-line"><h1>Rayan Ramoul</h1></div>
+        <div class="editor-line">==============================</div>
+        <div class="editor-line">~/ > Research Engineer @instadeepai, deep learning, software engineering, nvim and arch btw<span id="cursor"></span></div>
+        <div class="editor-line">==============================</div>
+        <div class="editor-line empty">~</div>
+        <div class="editor-line contact-line">
+          <a href="https://github.com/rayanramoul" target="_blank">GitHub</a> | 
+          <a href="https://www.linkedin.com/in/ramoul" target="_blank">LinkedIn</a> | 
+          <a href="https://github.com/rayanramoul/rayanramoul/blob/master/Resume.pdf" target="_blank">Resume</a> | 
+          <a href="https://twitter.com/raysamram" target="_blank">Twitter</a>
+        </div>
+        <div class="editor-line empty">~</div>
+        <div class="editor-line empty">~</div>
+      </div>
+    </div>
+    <div id="status-bar">
+      <span id="mode-indicator">-- NORMAL --</span>
+      <span id="file-info">rayanramoul.txt</span>
+      <span id="cursor-position">4,84</span>
     </div>
   </div>
 
